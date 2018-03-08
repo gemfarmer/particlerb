@@ -24,7 +24,10 @@ module Particle
       #
       # @return [Array<Device>] List of Particle devices to interact with
       def devices
-        get(Device.list_path).map do |attributes|
+        devices = get(Device.list_path)
+        devices = devices[:devices] unless !devices.is_a? Hash
+
+        devices.map do |attributes|
           device(attributes)
         end
       end

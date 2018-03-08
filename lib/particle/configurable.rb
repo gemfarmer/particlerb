@@ -15,7 +15,7 @@ module Particle
     #   @return [String] Configure User-Agent header for requests.
 
     attr_accessor :access_token, :connection_options,
-      :user_agent
+      :user_agent, :client_id, :client_secret, :product_id
     attr_writer :api_endpoint
 
     class << self
@@ -24,7 +24,9 @@ module Particle
           :access_token,
           :api_endpoint,
           :connection_options,
-          :user_agent
+          :user_agent,
+          :client_id,
+          :client_secret
         ]
       end
     end
