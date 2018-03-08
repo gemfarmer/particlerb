@@ -46,16 +46,28 @@ module Particle
       @client.remove_webhook(self)
     end
 
+    # def self.list_path
+    #   "v1/webhooks"
+    # end
+
+    # def self.create_path
+    #   "v1/webhooks"
+    # end
+
+    # def path
+    #   "/v1/webhooks/#{id}"
+    # end
+
     def self.list_path
-      "v1/webhooks"
+      "v1/products/#{Particle.product_id}/integrations"
     end
 
     def self.create_path
-      "v1/webhooks"
+      "v1/products/#{Particle.product_id}/integrations"
     end
 
     def path
-      "/v1/webhooks/#{id}"
+      "/v1/products/#{Particle.product_id}/integrations/#{id}"
     end
   end
 end
