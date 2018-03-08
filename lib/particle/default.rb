@@ -1,4 +1,5 @@
 require 'particle/version'
+require 'pry'
 
 module Particle
 
@@ -22,6 +23,15 @@ module Particle
 
       def access_token
         ENV['PARTICLE_ACCESS_TOKEN']
+      end
+
+      def client_id
+      end
+
+      def client_secret
+      end
+
+      def product_id
       end
 
       # Default options for Faraday::Connection

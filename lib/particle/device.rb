@@ -1,5 +1,5 @@
 require 'particle/model'
-
+require 'pry'
 module Particle
 
   # Domain model for one Particle device
@@ -142,7 +142,7 @@ module Particle
     # @return [OpenStruct] Result of flashing.
     #                :ok => true on success
     #                :errors => String with compile errors
-    #                
+    #
     def flash(file_paths, options = {})
       @client.flash_device(self, file_paths, options)
     end
@@ -154,7 +154,7 @@ module Particle
     # @return [OpenStruct] Result of flashing.
     #                :ok => true on success
     #                :errors => String with compile errors
-    #                
+    #
     def compile(file_paths)
       @client.compile(file_paths, device_id: id)
     end
@@ -171,15 +171,15 @@ module Particle
     end
 
     def self.list_path
-      "v1/devices"
+      "v1/products/#{Particle.product_id}/devices"
     end
 
     def self.claim_path
-      "v1/devices"
+      "v1/products/#{Particle.product_id}/devices"
     end
 
     def self.provision_path
-      "v1/devices"
+      "v1/products/#{Particle.product_id}/devices"
     end
 
     def update_keys_path
@@ -187,8 +187,28 @@ module Particle
     end
 
     def path
-      "/v1/devices/#{id_or_name}"
+      "/v1/products/#{Particle.product_id}/devices/#{id_or_name}"
     end
+
+    # def self.list_path
+    #   "v1/devices"
+    # end
+
+    # def self.claim_path
+    #   "v1/devices"
+    # end
+
+    # def self.provision_path
+    #   "v1/devices"
+    # end
+
+    # def update_keys_path
+    #   "/v1/provisioning/#{id}"
+    # end
+
+    # def path
+    #   "/v1/devices/#{id_or_name}"
+    # end
 
     def function_path(name)
       path + "/#{name}"
