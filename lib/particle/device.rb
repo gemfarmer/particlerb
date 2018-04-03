@@ -171,7 +171,7 @@ module Particle
     end
 
     def self.list_path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "v1/products/#{Particle.product_id}/devices"
       else
         "v1/devices"
@@ -179,7 +179,7 @@ module Particle
     end
 
     def self.claim_path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "v1/products/#{Particle.product_id}/devices"
       else
         "v1/devices"
@@ -187,7 +187,7 @@ module Particle
     end
 
     def self.provision_path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "v1/products/#{Particle.product_id}/devices"
       else
         "v1/devices"
@@ -203,7 +203,7 @@ module Particle
     end
 
     def path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "/v1/products/#{Particle.product_id}/devices/#{id_or_name}"
       else
         "/v1/devices/#{id_or_name}"

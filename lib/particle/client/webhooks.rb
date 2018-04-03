@@ -56,7 +56,7 @@ module Particle
       # @return [boolean] true for success
       def remove_webhook(target)
         result = delete(webhook(target).path)
-        if result.blank?
+        unless result.is_a? Hash
           true
         else
           result[:ok]
