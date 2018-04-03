@@ -47,7 +47,7 @@ module Particle
     end
 
     def self.list_path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "v1/products/#{Particle.product_id}/integrations"
       else
         "v1/webhooks"
@@ -55,7 +55,7 @@ module Particle
     end
 
     def self.create_path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "v1/products/#{Particle.product_id}/integrations"
       else
         "v1/webhooks"
@@ -63,7 +63,7 @@ module Particle
     end
 
     def path
-      unless Particle.product_id.blank?
+      if Particle.product_id
         "/v1/products/#{Particle.product_id}/integrations/#{id}"
       else
         "/v1/webhooks/#{id}"
