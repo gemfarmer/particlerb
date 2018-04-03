@@ -70,10 +70,7 @@ module Particle
           username: client,
           password: secret
         }
-        puts data
-        puts 'yo from particlerb----------------------------------'
-        puts http_options
-        puts Token.create_path
+
         result = request(:post, Token.create_path, data, http_options)
         result[:token] = result.delete(:access_token)
         token(result)
