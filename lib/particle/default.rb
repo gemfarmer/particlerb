@@ -1,8 +1,6 @@
 require 'particle/version'
-require 'pry'
 
 module Particle
-
   # Default configuration options for {Client}
   module Default
     API_ENDPOINT = "https://api.particle.io".freeze

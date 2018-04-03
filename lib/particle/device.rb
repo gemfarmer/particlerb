@@ -1,7 +1,6 @@
 require 'particle/model'
-require 'pry'
-module Particle
 
+module Particle
   # Domain model for one Particle device
   class Device < Model
     ID_REGEX = /^\h{24}$/
