@@ -171,15 +171,27 @@ module Particle
     end
 
     def self.list_path
-      "v1/products/#{Particle.product_id}/devices"
+      unless Particle.product_id.blank?
+        "v1/products/#{Particle.product_id}/devices"
+      else
+        "v1/devices"
+      end
     end
 
     def self.claim_path
-      "v1/products/#{Particle.product_id}/devices"
+      unless Particle.product_id.blank?
+        "v1/products/#{Particle.product_id}/devices"
+      else
+        "v1/devices"
+      end
     end
 
     def self.provision_path
-      "v1/products/#{Particle.product_id}/devices"
+      unless Particle.product_id.blank?
+        "v1/products/#{Particle.product_id}/devices"
+      else
+        "v1/devices"
+      end
     end
 
     def self.claim_code_path
@@ -191,28 +203,12 @@ module Particle
     end
 
     def path
-      "/v1/products/#{Particle.product_id}/devices/#{id_or_name}"
+      unless Particle.product_id.blank?
+        "/v1/products/#{Particle.product_id}/devices/#{id_or_name}"
+      else
+        "/v1/devices/#{id_or_name}"
+      end
     end
-
-    # def self.list_path
-    #   "v1/devices"
-    # end
-
-    # def self.claim_path
-    #   "v1/devices"
-    # end
-
-    # def self.provision_path
-    #   "v1/devices"
-    # end
-
-    # def update_keys_path
-    #   "/v1/provisioning/#{id}"
-    # end
-
-    # def path
-    #   "/v1/devices/#{id_or_name}"
-    # end
 
     def function_path(name)
       path + "/#{name}"
