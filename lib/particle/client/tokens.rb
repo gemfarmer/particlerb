@@ -76,24 +76,6 @@ module Particle
         token(result)
       end
 
-      # def create_product_token(username, password, options = {})
-      #   client = options.delete(:client) { 'particle' }
-      #   secret = options.delete(:secret) { 'particle' }
-      #   data = URI.encode_www_form({
-      #     grant_type: 'client_credentials',
-      #     username: username,
-      #     password: password
-      #   }.merge(options))
-      #   http_options = {
-      #     headers: { content_type: "application/x-www-form-urlencoded" },
-      #     username: client,
-      #     password: secret
-      #   }
-      #   result = request(:post, Token.create_path, data, http_options)
-      #   result[:token] = result.delete(:access_token)
-      #   token(result)
-      # end
-
       # Authenticate with Particle and start using the token on the
       # client right away
       #
@@ -105,11 +87,7 @@ module Particle
       #                       create the token.
       # @return [Token] The token object
       def login(username, password, options = {})
-        # if options[:is_product?]
-          # token = create_product_token(client_id, client_secret, options)
-        # else
-          token = create_token(username, password, options)
-        # end
+        token = create_token(username, password, options)
         self.access_token = token
         token
       end

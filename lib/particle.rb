@@ -30,14 +30,12 @@ module Particle
       token
     end
 
-    def login_product(username, password, options = {})
+    def login_as_product(username, password, options = {})
       options[:is_product?] = true
       options[:grant_type] = 'client_credentials'
       options[:client] = options[:client_id]
       options[:secret] = options[:client_secret]
       token = client.login(username, password, options)
-      puts "Token"
-      puts token.inspect
       self.access_token = token.access_token || token.token
       token
     end
