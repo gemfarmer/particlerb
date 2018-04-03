@@ -59,8 +59,9 @@ module Particle
       def create_token(username, password, options = {})
         client = options.delete(:client) { 'particle' }
         secret = options.delete(:secret) { 'particle' }
+        grant_type = options[:grant_type] || 'password'
         data = URI.encode_www_form({
-          grant_type: 'password',
+          grant_type: grant_type,
           username: username,
           password: password
         }.merge(options))
@@ -69,6 +70,7 @@ module Particle
           username: client,
           password: secret
         }
+
         result = request(:post, Token.create_path, data, http_options)
         result[:token] = result.delete(:access_token)
         token(result)

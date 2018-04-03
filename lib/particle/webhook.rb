@@ -47,15 +47,27 @@ module Particle
     end
 
     def self.list_path
-      "v1/webhooks"
+      if Particle.product_id
+        "v1/products/#{Particle.product_id}/integrations"
+      else
+        "v1/webhooks"
+      end
     end
 
     def self.create_path
-      "v1/webhooks"
+      if Particle.product_id
+        "v1/products/#{Particle.product_id}/integrations"
+      else
+        "v1/webhooks"
+      end
     end
 
     def path
-      "/v1/webhooks/#{id}"
+      if Particle.product_id
+        "/v1/products/#{Particle.product_id}/integrations/#{id}"
+      else
+        "/v1/webhooks/#{id}"
+      end
     end
   end
 end

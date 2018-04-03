@@ -1,7 +1,6 @@
 require 'particle/model'
 
 module Particle
-
   # Domain model for one Particle device
   class Device < Model
     ID_REGEX = /^\h{24}$/
@@ -142,7 +141,7 @@ module Particle
     # @return [OpenStruct] Result of flashing.
     #                :ok => true on success
     #                :errors => String with compile errors
-    #                
+    #
     def flash(file_paths, options = {})
       @client.flash_device(self, file_paths, options)
     end
@@ -154,7 +153,7 @@ module Particle
     # @return [OpenStruct] Result of flashing.
     #                :ok => true on success
     #                :errors => String with compile errors
-    #                
+    #
     def compile(file_paths)
       @client.compile(file_paths, device_id: id)
     end
@@ -171,15 +170,31 @@ module Particle
     end
 
     def self.list_path
-      "v1/devices"
+      if Particle.product_id
+        "v1/products/#{Particle.product_id}/devices"
+      else
+        "v1/devices"
+      end
     end
 
     def self.claim_path
-      "v1/devices"
+      if Particle.product_id
+        "v1/products/#{Particle.product_id}/devices"
+      else
+        "v1/devices"
+      end
     end
 
     def self.provision_path
-      "v1/devices"
+      if Particle.product_id
+        "v1/products/#{Particle.product_id}/devices"
+      else
+        "v1/devices"
+      end
+    end
+
+    def self.claim_code_path
+      "v1/products/#{Particle.product_id}/device_claims"
     end
 
     def update_keys_path
@@ -187,7 +202,11 @@ module Particle
     end
 
     def path
-      "/v1/devices/#{id_or_name}"
+      if Particle.product_id
+        "/v1/products/#{Particle.product_id}/devices/#{id_or_name}"
+      else
+        "/v1/devices/#{id_or_name}"
+      end
     end
 
     def function_path(name)

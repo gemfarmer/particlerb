@@ -1,7 +1,6 @@
 require 'particle/version'
 
 module Particle
-
   # Default configuration options for {Client}
   module Default
     API_ENDPOINT = "https://api.particle.io".freeze
@@ -22,6 +21,15 @@ module Particle
 
       def access_token
         ENV['PARTICLE_ACCESS_TOKEN']
+      end
+
+      def client_id
+      end
+
+      def client_secret
+      end
+
+      def product_id
       end
 
       # Default options for Faraday::Connection

@@ -24,7 +24,10 @@ module Particle
       #
       # @return [Array<Device>] List of Particle devices to interact with
       def devices
-        get(Device.list_path).map do |attributes|
+        devices = get(Device.list_path)
+        devices = devices[:devices] unless !devices.is_a? Hash
+
+        devices.map do |attributes|
           device(attributes)
         end
       end
@@ -44,6 +47,16 @@ module Particle
       # @return [Device] A device object to interact with
       def claim_device(target)
         result = post(Device.claim_path, id: device(target).id_or_name)
+        device(result[:id])
+      end
+
+      # Create a claim code for customer to claim their device via Two-Legged Auth
+      #
+      # @param target [String, Device] A device id or {Device} object.
+      #                                You can't claim a device by name
+      # @return [Device] A device object to interact with
+      def create_claim_code(target)
+        result = post(Device.claim_code_path, id: device(target).id_or_name)
         device(result[:id])
       end
 
