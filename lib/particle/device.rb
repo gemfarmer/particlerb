@@ -182,6 +182,10 @@ module Particle
       "v1/products/#{Particle.product_id}/devices"
     end
 
+    def self.claim_code_path
+      "v1/products/#{Particle.product_id}/device_claims"
+    end
+
     def update_keys_path
       "/v1/provisioning/#{id}"
     end
