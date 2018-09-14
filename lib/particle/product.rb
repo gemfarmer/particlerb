@@ -36,6 +36,10 @@ module Particle
       @client.product_firmware(self, target)
     end
 
+    def customers
+      @client.product_customers(self)
+    end
+
     def upload_firmware(version, title, binary, desc = nil)
       params = { version: version, title: title, binary: binary, description: desc }
       @client.upload_product_firmware(self, params)
@@ -70,5 +74,10 @@ module Particle
     def firmware_upload_path
       "/v1/products/#{id_or_slug}/firmware"
     end
+
+    def customers_path
+      "/v1/products/#{id_or_slug}/customers"
+    end
+
   end
 end
