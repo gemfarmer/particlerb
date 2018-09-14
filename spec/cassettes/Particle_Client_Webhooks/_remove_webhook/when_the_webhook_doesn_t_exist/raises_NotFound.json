@@ -2,11 +2,11 @@
   "http_interactions": [
     {
       "request": {
-        "method": "get",
-        "uri": "https://api.particle.io/v1/devices/__PARTICLE_DEVICE_ID_0__",
+        "method": "delete",
+        "uri": "https://api.particle.io/v1/webhooks/111111111111111111111111",
         "body": {
-          "encoding": "US-ASCII",
-          "string": ""
+          "encoding": "UTF-8",
+          "string": "{}"
         },
         "headers": {
           "User-Agent": [
@@ -14,6 +14,9 @@
           ],
           "Authorization": [
             "Bearer __PARTICLE_ACCESS_TOKEN__"
+          ],
+          "Content-Type": [
+            "application/json"
           ],
           "Accept-Encoding": [
             "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
@@ -25,18 +28,18 @@
       },
       "response": {
         "status": {
-          "code": 200,
-          "message": "OK"
+          "code": 404,
+          "message": "Not Found"
         },
         "headers": {
           "Date": [
-            "Sat, 19 May 2018 18:01:23 GMT"
+            "Sun, 03 Jun 2018 20:41:25 GMT"
           ],
           "Content-Type": [
             "application/json; charset=utf-8"
           ],
           "Content-Length": [
-            "610"
+            "40"
           ],
           "Connection": [
             "keep-alive"
@@ -45,7 +48,7 @@
             "nginx"
           ],
           "X-Request-Id": [
-            "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+            "94e9e8b0-10a9-4483-865e-440dc24cc728"
           ],
           "Access-Control-Allow-Origin": [
             "*"
@@ -53,11 +56,11 @@
         },
         "body": {
           "encoding": "UTF-8",
-          "string": "{\"id\":\"__PARTICLE_DEVICE_ID_0__\",\"name\":\"mydevice\",\"last_app\":null,\"last_ip_address\":\"00.00.000.000\",\"last_heard\":\"2018-03-28T03:08:10.380Z\",\"product_id\":10,\"connected\":false,\"platform_id\":10,\"cellular\":true,\"notes\":null,\"status\":\"normal\",\"iccid\":\"1111111111111111111\",\"last_iccid\":\"1111111111111111111\",\"imei\":\"111111111111111\",\"current_build_target\":\"0.6.4\",\"system_firmware_version\":\"0.6.4\",\"default_build_target\":\"0.6.4\",\"variables\":{},\"functions\":[\"reset\"]}"
+          "string": "{\"ok\":false,\"error\":\"Webhook not found\"}"
         },
         "http_version": null
       },
-      "recorded_at": "Sat, 19 May 2018 18:01:21 GMT"
+      "recorded_at": "Sun, 03 Jun 2018 20:41:25 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

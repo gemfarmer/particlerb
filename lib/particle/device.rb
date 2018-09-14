@@ -1,16 +1,11 @@
 require 'particle/model'
+require 'particle/platform'
 
 module Particle
   # Domain model for one Particle device
   class Device < Model
     ID_REGEX = /^\h{24}$/
-    PRODUCT_IDS = {
-      0 => "Core".freeze,
-      6 => "Photon".freeze,
-      8 => "P1".freeze,
-      10 => "Electron".freeze,
-      31 => "Raspberry Pi".freeze
-    }
+    PLATFORM_IDS = Platform::IDS
 
     def initialize(client, attributes)
       super(client, attributes)
@@ -43,9 +38,11 @@ module Particle
     end
 
     attribute_reader :connected, :product_id, :last_heard, :last_app,
-      :last_ip_address
+      :last_ip_address, :platform_id, :cellular, :status, :iccid,
+      :imei, :current_build_target, :default_build_target, :system_firmware_version
 
     alias_method :connected?, :connected
+    alias_method :cellular?, :cellular
 
     def functions
       get_attributes unless @fully_loaded
@@ -58,7 +55,19 @@ module Particle
     end
 
     def product
-      PRODUCT_IDS[product_id]
+      @product ||= dev_kit? ? nil : Product.new(@client, product_id)
+    end
+
+    def platform
+      @platform ||= Platform.new(@client, platform_id)
+    end
+
+    def platform_name
+      platform.name
+    end
+
+    def dev_kit?
+      product_id && PLATFORM_IDS.include?(product_id)
     end
 
     def get_attributes
@@ -222,4 +231,3 @@ module Particle
     end
   end
 end
-
