@@ -25,6 +25,9 @@ module Particle
       # Find Customer by username
       def find_customer_by_id(product, id)
         customers = product_customers(product)
+        puts 'customers:'
+        puts customers.inspect
+        puts '***************************************'
         if customers.any?
           customers.find { |c| c.id == id }
         else
