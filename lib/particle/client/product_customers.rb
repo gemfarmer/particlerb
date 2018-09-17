@@ -22,6 +22,16 @@ module Particle
         end
       end
 
+      # Find Customer by username
+      def find_customer_by_id(product, id)
+        customers = product_customers(product)
+        if customers.any?
+          customers.find { |c| c.id == id }
+        else
+          nil
+        end
+      end
+
 
       # Create a domain model for a Particle product firmware object
       #
