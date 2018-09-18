@@ -48,6 +48,10 @@ module Particle
       @client.find_customer_by_id(self, target)
     end
 
+    def find_customer_by_device(target)
+      @client.find_customer_by_device(self, target)
+    end
+
     def upload_firmware(version, title, binary, desc = nil)
       params = { version: version, title: title, binary: binary, description: desc }
       @client.upload_product_firmware(self, params)

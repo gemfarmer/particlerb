@@ -16,25 +16,37 @@ module Particle
       def find_customer_by_username(product, username)
         customers = product_customers(product)
         if customers.any?
-          customers.find { |c| c.username == username }
+          customers.find { |c| c.username.downcase == username.downcase }
         else
           nil
         end
       end
 
-      # Find Customer by username
+      # Find Customer by id
       def find_customer_by_id(product, id)
         customers = product_customers(product)
         puts 'customers:'
         puts customers.inspect
         puts '***************************************'
         if customers.any?
-          customers.find { |c| c.id == id }
+          customers.find { |c| c.id == id.downcase }
         else
           nil
         end
       end
 
+      # Find Customer by device
+      def find_customer_by_device(product, device)
+        customers = product_customers(product)
+        puts 'customers:'
+        puts customers.inspect
+        puts '***************************************'
+        if customers.any?
+          customers.find { |c| c.devices.include?(device.downcase) }
+        else
+          nil
+        end
+      end
 
       # Create a domain model for a Particle product firmware object
       #
