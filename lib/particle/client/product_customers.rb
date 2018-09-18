@@ -25,9 +25,6 @@ module Particle
       # Find Customer by id
       def find_customer_by_id(product, id)
         customers = product_customers(product)
-        puts 'customers:'
-        puts customers.inspect
-        puts '***************************************'
         if customers.any?
           customers.find { |c| c.id == id.downcase }
         else
@@ -38,9 +35,6 @@ module Particle
       # Find Customer by device
       def find_customer_by_device(product, device)
         customers = product_customers(product)
-        puts 'customers:'
-        puts customers.inspect
-        puts '***************************************'
         if customers.any?
           customers.find { |c| c.devices.include?(device.downcase) }
         else
