@@ -42,9 +42,15 @@ module Particle
       @attributes[:owner]
     end
 
+    def customer_id
+      get_attributes unless @attributes[:customer_id]
+      @attributes[:customer_id]
+    end
+
     attribute_reader :connected, :product_id, :last_heard, :last_app,
       :last_ip_address, :platform_id, :cellular, :status, :iccid,
-      :imei, :current_build_target, :default_build_target, :system_firmware_version, :owner
+      :imei, :current_build_target, :default_build_target, :system_firmware_version,
+      :owner, :customer_id
 
     alias_method :connected?, :connected
     alias_method :cellular?, :cellular
